@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.1)
 
-project(WANET C)
+project(mq_linux_target C)
 
 # macro define...
 
@@ -9,12 +9,16 @@ set(SOFTWAREVERSION_H 01)
 set(SOFTWAREVERSION_L 000)
 
 
+# json buffer size
+set(JSON_BUFFER_LEN 4096)
+
 
 #############################################################
 ###                     debug message
 #############################################################
 # log timestamp
 set(DEBUG_TIME 1)
+
 
 
 option(RSYSLOG "RSYSLOG..." OFF)

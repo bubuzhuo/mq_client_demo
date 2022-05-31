@@ -45,9 +45,18 @@
 #include <sys/time.h>
 #include <sys/epoll.h> 
 
+
+
+#include "device_init.h"
+
 /* mq lib inlcude ----------------------------------------------------------*/
 #include "rabbitmq-c/amqp.h"
 #include "rabbitmq-c/tcp_socket.h"
+
+
+#include "mq_config.h"
+#include "mq_client.h"
+
 
 /* base lib.----------------------------------------------------------------*/
 #include "cJSON.h"
@@ -58,6 +67,8 @@
 
 
 #include "mq_config_demo.h"
+
+
 
 
 /* Exported macro ------------------------------------------------------------*/
@@ -73,6 +84,7 @@
 #ifndef FALSE
 #define FALSE !TRUE
 #endif
+
 
 
 #endif /* __MAIN_H */

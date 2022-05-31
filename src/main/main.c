@@ -14,9 +14,6 @@
 /**MAIN_FLAG_STOP*/
 static uint8_t MAIN_FLAG_STOP = RESET;
 
-
-
-
 /**
  * @brief signal_handler
  *
@@ -37,8 +34,6 @@ static void signal_handler(int sig)
 		break;
 	}
 }
-
-
 
 /**
  * @brief main
@@ -62,8 +57,6 @@ int main(int argc, char **argv)
 		exit(-1);
 	}
 
-
-
 	/* log file initialization */
 #ifdef RSYSLOG
 	if (!log_manageInit(TRUE))
@@ -71,21 +64,29 @@ int main(int argc, char **argv)
 	if (!log_manageInit(FALSE))
 #endif
 	{
-		log_printf(MSG_ERROR, "log_manageInit error!\r\n");
+		log_printf(MSG_ERROR, "log_manageInit error!\n");
 		exit(-1);
 	}
 	else
 	{
-		log_printf(MSG_DEBUG, "log_manageInit setting successfully!\r\n");
+		log_printf(MSG_DEBUG, "log_manageInit setting successfully!\n");
 	}
 
 	set_app_running(SET);
+
+	if (!device_init())
+	{
+		log_printf(MSG_ERROR, "main: device_init error!\n");
+		exit(-1);
+	}
 
 	while (1)
 	{
 		if (MAIN_FLAG_STOP)
 		{
 			set_app_running(FALSE);
+
+			device_destroy();
 
 			log_closeFile();
 
@@ -100,4 +101,3 @@ int main(int argc, char **argv)
 
 	return 0;
 }
-
